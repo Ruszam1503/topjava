@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.model;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -7,6 +8,8 @@ import java.util.Set;
 import static ru.javawebinar.topjava.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
 public class User extends AbstractNamedEntity {
+
+    private Integer id;
 
     private String email;
 
@@ -31,6 +34,11 @@ public class User extends AbstractNamedEntity {
         this.caloriesPerDay = caloriesPerDay;
         this.enabled = enabled;
         this.roles = roles;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -87,5 +95,10 @@ public class User extends AbstractNamedEntity {
                 ", roles=" + roles +
                 ", caloriesPerDay=" + caloriesPerDay +
                 ')';
+    }
+
+
+    public boolean isNew() {
+        return id == null;
     }
 }
