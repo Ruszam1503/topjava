@@ -3,6 +3,8 @@ package ru.javawebinar.topjava.web.meal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Controller;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.service.MealService;
@@ -18,6 +20,7 @@ import java.util.List;
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
+@Controller
 public class MealRestController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -59,7 +62,7 @@ public class MealRestController {
         service.update(meal, userId);
     }
 
-    public Collection<MealTo> isBetweenHalfOpen(LocalDate startDate , LocalTime startTime , LocalDate endDate , LocalTime endTime) {
+    public Collection<MealTo> isBetweenHalfOpen(@Nullable LocalDate startDate , @Nullable LocalTime startTime , @Nullable LocalDate endDate , @Nullable LocalTime endTime) {
         int userId = SecurityUtil.authUserId();
         log.info("getAll");
         Collection<Meal> mealsDateFilter = service.isBetweenHalfOpen(userId, startDate, endDate);
